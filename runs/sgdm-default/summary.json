@@ -1,0 +1,18 @@
+{
+  "status": "completed",
+  "step": 5000,
+  "tokens": 92160000,
+  "train_seconds": 1246.4681762115506,
+  "checkpoint_seconds": 41.69681570708053,
+  "wall_seconds": 1307.7102146009856,
+  "endpoint_scores": {
+    "loss": 1.6465947329998016,
+    "perplexity": 5.189278826026038,
+    "bits_per_character": 2.3755340556527007
+  },
+  "best_val_loss": 1.5075963735580444,
+  "tokens_per_second": 73936.90569791058,
+  "peak_memory_bytes": 20564190720,
+  "budget": "tokens",
+  "output": "/home/user2/work/project1/runs/sgdm-default"
+}
