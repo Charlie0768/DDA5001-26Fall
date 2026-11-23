@@ -16,7 +16,15 @@ Based on [nanoGPT](https://github.com/karpathy/nanoGPT) and the [2025 course cod
 
 在 Ubuntu 上打开学校预装的 `~/work/project1`。这个目录应直接包含 `train.py`，课程数据已准备好。
 
-从本 Fork [下载只含七处 TODO 改动的补丁](https://github.com/Charlie0768/DDA5001-26Fall/commit/e0532406731d8907ff254ce0e904dd920e975689.patch)，保存为 `part1-todos.patch`，放到 `~/work/project1`。在该目录执行：
+在机房终端复制以下命令，把七处 TODO 的补丁保存为 `part1-todos.patch`。在浏览器打开补丁链接时，GitHub 可能直接显示文本。
+
+```bash
+cd ~/work/project1 &&
+curl --fail --location --output part1-todos.patch \
+  'https://github.com/Charlie0768/DDA5001-26Fall/commit/e0532406731d8907ff254ce0e904dd920e975689.patch'
+```
+
+也可以提前把补丁文件带到机房，放到 `~/work/project1` 并命名为 `part1-todos.patch`。文件到位后执行：
 
 ```bash
 cd ~/work/project1
@@ -29,7 +37,7 @@ python check_solution.py &&
 python train.py config/smoke.py --device=cuda --out_dir=checks/gpu
 ```
 
-补丁只需应用一次。预检查报错时，先确认三份源文件是否已经含有改动或模板版本是否不同。小测试重跑时请选择新的 `out_dir`。如果你已经从这个 Fork 克隆了完整仓库并进入 `p1`，七处改动已经包含在源文件中，可以直接运行检查和 GPU 小测试。
+补丁只需应用一次。预检查报错时，先确认三份源文件是否已经含有改动或模板版本是否不同。小测试重跑时请选择新的 `out_dir`。如果你已克隆本 Fork，或者点击仓库页面的 **Code → Download ZIP** 下载完整代码并解压，进入其中的 `p1` 后可以直接运行检查和 GPU 小测试，源文件已包含七处改动。
 
 ### 2. 顺序跑六组正式实验
 
