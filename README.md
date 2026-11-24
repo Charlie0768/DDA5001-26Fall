@@ -5,7 +5,7 @@ Course code for DDA5001 at CUHK-Shenzhen. See the handbook and Blackboard for de
 | Part | Topic |
 | --- | --- |
 | [Part I](p1/README.md) | GPT pre-training: optimizers and learning rates |
-| [Part II](p2/README.md) | Off-policy and on-policy knowledge distillation |
+| [Part II](p2/README.md) | Off-policy and on-policy knowledge distillation · [机房步骤](#part-ii-机房运行步骤) |
 | Part III | Coming later |
 
 Based on [nanoGPT](https://github.com/karpathy/nanoGPT) and the [2025 course code](https://github.com/CUHKSZ-Course/DDA5001-25Fall). See [LICENSE](LICENSE).
@@ -160,3 +160,50 @@ unzip -t part1-results.zip
 ```
 
 打开 ZIP 确认有报告、源代码、六组配置和结果、图和生成文本。提交包应排除课程数据集和 checkpoint。每组在 Blackboard 的 Part I 入口交一个 ZIP。
+
+## Part II 机房运行步骤
+
+### 1. 带上完成版分析文件
+
+使用 Ubuntu 工作站预装的 `~/work/project2`，其中已有 `run.sh`、Python 环境、模型和评测资源。在同一个终端依次执行下面各步。先下载完成版 `analysis_exercises.py` 并通过课程检查。
+
+```bash
+cd ~/work/project2 &&
+curl --fail --location --output analysis_exercises.download.py \
+  'https://raw.githubusercontent.com/Charlie0768/DDA5001-26Fall/3047e271c2e99a77b6dca1665c8729f58c9acbdb/p2/analysis_exercises.py' &&
+mv analysis_exercises.download.py analysis_exercises.py &&
+python3 check_analysis.py
+```
+
+如果机房连不上 GitHub，提前把 Fork 中的 `p2/analysis_exercises.py` 存到 U 盘或自己的云盘。在机房把它复制到 `~/work/project2/analysis_exercises.py`，再执行 `python3 check_analysis.py`。成功时会显示 `Both analysis checks passed.`。
+
+### 2. 跑默认训练和评测
+
+```bash
+bash run.sh
+```
+
+脚本依次训练 SFT、OPD，再完成两套评测。课程在 RTX 5090 D v2 工作站上的估计是 1.5–2 小时。看到 `Report ready after ... seconds` 后，查看 `booking-run/scores/summary.csv`。同一工作站一次只跑一份。脚本遇到已有的 `booking-run/` 会停止。若上次已成功，直接进入导出步骤。若上次失败且需要从头重跑，先把旧目录改名留存，再重新执行 `bash run.sh`。
+
+### 3. 导出结果并带走
+
+```bash
+python3 analyze_results.py booking-run/scores > analysis.json &&
+python3 export_analysis.py &&
+zip -j part2-analysis.zip analysis.json &&
+unzip -t part2-analysis.zip
+```
+
+把 `part2-analysis.zip` 复制到自己的存储。另存 `booking-run/sft/adapter/` 和 `booking-run/opd/adapter/` 供可能的抽查。课程提交包排除模型权重和 adapter。
+
+### 4. 在自己的电脑上写报告并提交
+
+解压一份 ZIP 查看 `booking-run/scores/summary.csv` 和 `analysis.json`。在解压目录运行以下查看命令，从结果文件中选实际的题目或 prompt ID。`--draw` 可取 `0`、`1`、`2`、`3`。
+
+```bash
+python3 inspect_trajectory.py training
+python3 inspect_trajectory.py math QUESTION_ID --draw 0
+python3 inspect_trajectory.py ifeval PROMPT_ID --draw 0
+```
+
+报告正文最多 2 页，参考文献和附录合计最多另加 2 页。写清训练轨迹对比、两套评测与距老师的差距、数学分难度结果、IFEval 转移和实际案例，再补上困难和组员贡献。把 `report.pdf` 加到 ZIP 顶层后，每组在 Blackboard 的 Part II 入口交一个 `part2-analysis.zip`。Handbook 标注截止时间为 12 月 11 日 23:59。
