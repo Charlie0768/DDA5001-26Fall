@@ -1,0 +1,74 @@
+diff --git a/p1/model.py b/p1/model.py
+index cf7a608..668ddcf 100644
+--- a/p1/model.py
++++ b/p1/model.py
+@@ -23,7 +23,7 @@ def causal_mask(size, device=None):
+     # Keep the supplied shape, dtype and device. Choose the tril diagonal
+     # that permits the current token and all earlier tokens, never future tokens.
+     return torch.ones(size, size, dtype=torch.bool, device=device).tril(
+-        diagonal=todo("causal_mask.diagonal"))
++        diagonal=0)
+ 
+ class LayerNorm(nn.Module):
+     """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False """
+@@ -250,14 +250,14 @@ class GPT(nn.Module):
+             # Fill lr from this function's learning_rate argument; do not hard-code,
+             # rescale it, implement an optimizer, or import an optimizer from another file.
+             optimizers = [torch.optim.AdamW(
+-                all_groups, lr=todo("optimizer_adamw.lr"), betas=betas, **extra_args)]
++                all_groups, lr=learning_rate, betas=betas, **extra_args)]
+         elif optimizer_name == 'sgdm':
+             # TODO optimizer_sgdm: Set optimizers to a list containing SGD(all_groups) with the supplied SGDM LR, momentum and Nesterov setting.
+             # Use ONLY torch.optim.SGD (momentum SGD), not Adam or a custom class.
+             # Fill lr from sgdm_learning_rate. Keep the supplied momentum/Nesterov
+             # settings and parameter groups; do not create an auxiliary optimizer.
+             optimizers = [torch.optim.SGD(
+-                all_groups, lr=todo("optimizer_sgdm.lr"),
++                all_groups, lr=sgdm_learning_rate,
+                 momentum=sgdm_momentum, nesterov=sgdm_nesterov)]
+         elif optimizer_name == 'muon':
+             if not hasattr(torch.optim, 'Muon'):
+@@ -277,7 +277,7 @@ class GPT(nn.Module):
+             # parameter membership, use a fallback optimizer, or add extra updates.
+             auxiliary = torch.optim.AdamW(other_groups, lr=learning_rate, betas=betas, **extra_args)
+             muon = torch.optim.Muon(
+-                hidden, lr=todo("optimizer_muon.lr"), momentum=todo("optimizer_muon.momentum"),
++                hidden, lr=muon_learning_rate, momentum=muon_momentum,
+                 weight_decay=weight_decay, adjust_lr_fn='original')
+             optimizers = [auxiliary, muon]
+         else:
+diff --git a/p1/plot.py b/p1/plot.py
+index 78dfee2..357cb61 100644
+--- a/p1/plot.py
++++ b/p1/plot.py
+@@ -19,7 +19,7 @@ def draw_loss_curves(ax, rows, x_key, x_label, series, **line_options):
+         # Fill only the x/y arguments with the prepared xs/ys, respectively.
+         # Keep label, marker, markersize and **line_options. Axis labels, legend,
+         # CSV aggregation, evaluation and file saving are provided outside this block.
+-        ax.plot(todo("plots.x"), todo("plots.y"),
++        ax.plot(xs, ys,
+                 label=label, marker='o', markersize=3, **line_options)
+     ax.set(xlabel=x_label, ylabel='Cross-entropy loss (nats / character)')
+     ax.legend(fontsize=8)
+diff --git a/p1/train.py b/p1/train.py
+index d0141de..f06c9fc 100644
+--- a/p1/train.py
++++ b/p1/train.py
+@@ -40,7 +40,7 @@ def prediction_windows(data, starts, block_size):
+     # x and y must index the SAME original token sequence. Fill the offset
+     # for the next token position; do not add a number to token IDs themselves.
+     x = data[starts[:, None] + offsets]
+-    y = data[starts[:, None] + offsets + todo("shifted_labels.offset")]
++    y = data[starts[:, None] + offsets + 1]
+     return x, y
+ 
+ 
+@@ -52,7 +52,7 @@ def step_optimizers(optimizers):
+         # The enclosing loop is provided: every optimizer must step exactly once.
+         # Do not add backward, zero_grad, clipping, closures or another loop here.
+         # This helper is called once AFTER all gradient accumulation and clipping.
+-        todo("optimizer_step")
++        optimizer.step()
+ 
+ 
+ def get_batch(data, generator, config, device):

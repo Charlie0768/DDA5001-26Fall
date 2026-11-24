@@ -1,0 +1,18 @@
+{
+  "status": "completed",
+  "step": 5000,
+  "tokens": 92160000,
+  "train_seconds": 1245.5233942076738,
+  "checkpoint_seconds": 44.421449281973764,
+  "wall_seconds": 1308.274780496984,
+  "endpoint_scores": {
+    "loss": 3.8113730251789093,
+    "perplexity": 45.21247413396748,
+    "bits_per_character": 5.498648962403579
+  },
+  "best_val_loss": 1.5501256436109543,
+  "tokens_per_second": 73992.98995794983,
+  "peak_memory_bytes": 21773741056,
+  "budget": "tokens",
+  "output": "/home/user2/work/project1/runs/adamw-other"
+}

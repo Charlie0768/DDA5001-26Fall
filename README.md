@@ -4,13 +4,15 @@ Course code for DDA5001 at CUHK-Shenzhen. See the handbook and Blackboard for de
 
 | Part | Topic |
 | --- | --- |
-| [Part I](p1/README.md) | GPT pre-training: optimizers and learning rates |
+| [Part I](p1/README.md) | GPT pre-training: optimizers and learning rates · [六组实验结果](p1/results/part1-results.zip) |
 | [Part II](p2/README.md) | Off-policy and on-policy knowledge distillation · [机房步骤](#part-ii-机房运行步骤) |
 | Part III | Coming later |
 
 Based on [nanoGPT](https://github.com/karpathy/nanoGPT) and the [2025 course code](https://github.com/CUHKSZ-Course/DDA5001-25Fall). See [LICENSE](LICENSE).
 
 ## Part I 机房运行步骤
+
+六组正式实验已完成。结果包包含训练配置、曲线和样本文本，各组的记录在 [已完成的运行目录](p1/results/runs)。下面保留复现实验的步骤。
 
 ### 1. 把 TODO 改动带到工作站
 
