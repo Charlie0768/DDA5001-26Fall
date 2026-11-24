@@ -9,9 +9,25 @@ def math_by_level(questions):
     pass_at_1 (a dict of fractions for all four arms), sft_wins, opd_wins and ties.
     Count a question in sft_wins or opd_wins when that method has more correct draws.
     """
-    # TODO 1: group questions by level. Aggregate scores and compare the two
-    # adapters on each question before counting wins and ties.
-    raise NotImplementedError("Complete math_by_level in analysis_exercises.py")
+    draws_by_level = {}
+    for question in questions:
+        draws_by_level.setdefault(question["level"], []).append(question["correct_draws"])
+
+    arms = ("original", "teacher", "sft", "opd")
+    results = {}
+    for level, draws in draws_by_level.items():
+        total_draws = 4 * len(draws)
+        paired_differences = [row["sft"] - row["opd"] for row in draws]
+        results[level] = {
+            "questions": len(draws),
+            "pass_at_1": {
+                arm: sum(row[arm] for row in draws) / total_draws for arm in arms
+            },
+            "sft_wins": sum(diff > 0 for diff in paired_differences),
+            "opd_wins": sum(diff < 0 for diff in paired_differences),
+            "ties": sum(diff == 0 for diff in paired_differences),
+        }
+    return results
 
 
 def ifeval_transitions(questions):
@@ -21,6 +37,17 @@ def ifeval_transitions(questions):
     (pass to pass), lost (pass to fail), gained (fail to pass) and
     still_failing (fail to fail). A question passes if at least one draw succeeds.
     """
-    # TODO 2: classify each question for each adapter. Each question belongs
-    # to exactly one category, even if several of its draws pass.
-    raise NotImplementedError("Complete ifeval_transitions in analysis_exercises.py")
+    transition_names = {
+        (True, True): "retained",
+        (True, False): "lost",
+        (False, True): "gained",
+        (False, False): "still_failing",
+    }
+    results = {arm: dict.fromkeys(transition_names.values(), 0) for arm in ("sft", "opd")}
+    for question in questions:
+        draws = question["correct_draws"]
+        original_passed = draws["original"] > 0
+        for arm, counts in results.items():
+            transition = transition_names[original_passed, draws[arm] > 0]
+            counts[transition] += 1
+    return results
