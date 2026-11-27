@@ -1,0 +1,149 @@
+Training question ff70f3ea5742efdcf95582e1263288256e6aeef9e8be463861f8d5cfac2a0fdb
+Find the remainder when $8\cdot10^{18}+1^{18}$ is divided by 9.
+
+Reference answer
+0
+
+Offline teacher response
+We are asked to find the **remainder when**
+$$
+8 \cdot 10^{18} + 1^{18}
+$$
+**is divided by 9**.
+
+That is, compute:
+$$
+(8 \cdot 10^{18} + 1^{18}) \mod 9
+$$
+
+---
+
+### Step 1: Simplify $1^{18}$
+$$
+1^{18} = 1
+$$
+So the expression becomes:
+$$
+8 \cdot 10^{18} + 1 \mod 9
+$$
+
+---
+
+### Step 2: Use modular arithmetic — compute $10^{18} \mod 9$
+
+Note that:
+$$
+10 \equiv 1 \mod 9
+$$
+Because $10 - 1 = 9$, which is divisible by 9.
+
+So:
+$$
+10^{18} \equiv 1^{18} = 1 \mod 9
+$$
+
+---
+
+### Step 3: Multiply by 8
+$$
+8 \cdot 10^{18} \equiv 8 \cdot 1 = 8 \mod 9
+$$
+
+---
+
+### Step 4: Add 1
+$$
+8 \cdot 10^{18} + 1 \equiv 8 + 1 = 9 \mod 9
+$$
+
+$$
+9 \mod 9 = 0
+$$
+
+---
+
+### ✅ Final Answer:
+$$
+\boxed{0}
+$$
+
+The remainder when $8 \cdot 10^{18} + 1^{18}$ is divided by 9 is **0**. ✅
+
+Student rollout 1 (stopped)
+We are given the expression:
+
+$$
+8 \cdot 10^{18} + 1^{18}
+$$
+
+and asked to find the **remainder** when this expression is divided by **9**.
+
+---
+
+### Step 1: Use modular arithmetic properties
+
+We know that:
+
+$$
+a \mod 9 = (a \mod 9)
+$$
+
+So, we can compute each term modulo 9 separately.
+
+---
+
+### Step 2: Compute $ 1^{18} \mod 9 $
+
+$$
+1^{18} = 1 \Rightarrow 1 \mod 9 = 1
+$$
+
+---
+
+### Step 3: Compute $ 8 \cdot 10^{18} \mod 9 $
+
+We can use the **property**:
+
+$$
+a \cdot b \mod 9 = (a \mod 9) \cdot (b \mod 9) \mod 9
+$$
+
+So first compute $ 10 \mod 9 $:
+
+$$
+10 \equiv 1 \mod 9
+$$
+
+Therefore:
+
+$$
+10^{18} \equiv 1^{18} \equiv 1 \mod 9
+$$
+
+Then:
+
+$$
+8 \cdot 10^{18} \equiv 8 \cdot 1 = 8 \mod 9
+$$
+
+---
+
+### Step 4: Add the two results
+
+$$
+8 \cdot 10^{18} + 1^{18} \equiv 8 + 1 = 9 \mod 9
+$$
+
+But:
+
+$$
+9 \mod 9 = 0
+$$
+
+---
+
+### ✅ Final Answer:
+
+$$
+\boxed{0}
+$$

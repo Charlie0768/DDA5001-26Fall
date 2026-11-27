@@ -1,0 +1,14 @@
+IFEval prompt 3572, draw 2
+Brainstorm a name for a company that collects and analyzes public transportation fares. The response should be in English, and in all capital letters.
+
+ORIGINAL (pass, stop)
+Instructions: change_case:english_capital=pass
+TRANSPORTDATA INC.
+
+SFT (pass, stop)
+Instructions: change_case:english_capital=pass
+TRANSPORTDATA INC.
+
+OPD (fail, stop)
+Instructions: change_case:english_capital=fail
+TRANSPORTATION DATA SOLUTIONS

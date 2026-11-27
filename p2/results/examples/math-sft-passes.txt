@@ -1,0 +1,106 @@
+MATH-500 question test/prealgebra/1761.json, draw 0
+Remmy wants to divide $10$ by $\frac{2}{3}$, but he cannot remember how to do that.  By what number should he multiply $10$ to get the answer?
+Show your work and put the final answer in \boxed{}.
+
+Reference answer
+\frac{3}{2}
+
+ORIGINAL (incorrect, stop)
+Remmy wants to divide $ 10 $ by $ \frac{2}{3} $, which is the same as multiplying $ 10 $ by the reciprocal of $ \frac{2}{3} $.
+
+---
+
+### Step 1: Find the reciprocal of $ \frac{2}{3} $
+
+The reciprocal of a fraction is obtained by flipping the numerator and denominator.
+
+$$
+\text{Reciprocal of } \frac{2}{3} = \frac{3}{2}
+$$
+
+---
+
+### Step 2: Multiply $ 10 $ by $ \frac{3}{2} $
+
+$$
+10 \times \frac{3}{2} = \frac{10 \times 3}{2} = \frac{30}{2} = 15
+$$
+
+---
+
+### Final Answer:
+
+$$
+\boxed{15}
+$$
+
+So, Remmy should multiply $ 10 $ by $ \frac{3}{2} $ to get the result.
+
+SFT (correct, stop)
+Remmy wants to divide $ 10 $ by $ \frac{2}{3} $, which is the same as multiplying $ 10 $ by the reciprocal of $ \frac{2}{3} $.
+
+---
+
+### Step 1: Understand the operation
+$$
+10 \div \frac{2}{3} = 10 \times \frac{3}{2}
+$$
+
+---
+
+### Step 2: Perform the multiplication
+$$
+10 \times \frac{3}{2} = \frac{10 \times 3}{2} = \frac{30}{2} = 15
+$$
+
+---
+
+### Step 3: What number should Remmy multiply 10 by to get the same result?
+
+We want to find a number $ x $ such that:
+
+$$
+10 \times x = 15
+$$
+
+Solving for $ x $:
+
+$$
+x = \frac{15}{10} = \frac{3}{2}
+$$
+
+---
+
+### ✅ Final Answer:
+$$
+\boxed{\frac{3}{2}}
+$$
+
+Remmy should multiply $ 10 $ by $ \frac{3}{2} $ to get the result of $ 10 \div \frac{2}{3} $.
+
+OPD (incorrect, stop)
+We are given the expression:
+
+$$
+10 \div \frac{2}{3}
+$$
+
+To divide by a fraction, we multiply by its reciprocal.
+
+So:
+
+$$
+10 \div \frac{2}{3} = 10 \times \frac{3}{2}
+$$
+
+Now multiply:
+
+$$
+10 \times \frac{3}{2} = \frac{10 \times 3}{2} = \frac{30}{2} = 15
+$$
+
+---
+
+**Answer:** $\boxed{15}$
+
+So, Remmy should multiply $10$ by $\frac{3}{2}$ to get the answer.

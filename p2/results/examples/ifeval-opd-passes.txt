@@ -1,0 +1,14 @@
+IFEval prompt 202, draw 2
+What is another word for Engravings? Answer in lowercase letters only, throughout your entire answer.
+
+ORIGINAL (fail, stop)
+Instructions: change_case:english_lowercase=fail
+engravings
+
+SFT (fail, stop)
+Instructions: change_case:english_lowercase=fail
+engravings
+
+OPD (pass, stop)
+Instructions: change_case:english_lowercase=pass
+engravings in lowercase letters only.

@@ -1,0 +1,78 @@
+{
+  "math_by_level": {
+    "2": {
+      "questions": 90,
+      "pass_at_1": {
+        "original": 0.8416666666666667,
+        "teacher": 0.9722222222222222,
+        "sft": 0.875,
+        "opd": 0.8777777777777778
+      },
+      "sft_wins": 8,
+      "opd_wins": 9,
+      "ties": 73
+    },
+    "5": {
+      "questions": 134,
+      "pass_at_1": {
+        "original": 0.4701492537313433,
+        "teacher": 0.7182835820895522,
+        "sft": 0.47201492537313433,
+        "opd": 0.5354477611940298
+      },
+      "sft_wins": 22,
+      "opd_wins": 42,
+      "ties": 70
+    },
+    "3": {
+      "questions": 105,
+      "pass_at_1": {
+        "original": 0.8214285714285714,
+        "teacher": 0.9285714285714286,
+        "sft": 0.8452380952380952,
+        "opd": 0.8642857142857143
+      },
+      "sft_wins": 11,
+      "opd_wins": 12,
+      "ties": 82
+    },
+    "4": {
+      "questions": 128,
+      "pass_at_1": {
+        "original": 0.71484375,
+        "teacher": 0.892578125,
+        "sft": 0.763671875,
+        "opd": 0.796875
+      },
+      "sft_wins": 15,
+      "opd_wins": 22,
+      "ties": 91
+    },
+    "1": {
+      "questions": 43,
+      "pass_at_1": {
+        "original": 0.9476744186046512,
+        "teacher": 0.9767441860465116,
+        "sft": 0.9186046511627907,
+        "opd": 0.9825581395348837
+      },
+      "sft_wins": 0,
+      "opd_wins": 7,
+      "ties": 36
+    }
+  },
+  "ifeval_transitions": {
+    "sft": {
+      "retained": 409,
+      "lost": 11,
+      "gained": 15,
+      "still_failing": 106
+    },
+    "opd": {
+      "retained": 399,
+      "lost": 21,
+      "gained": 16,
+      "still_failing": 105
+    }
+  }
+}
